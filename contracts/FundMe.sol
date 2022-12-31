@@ -54,6 +54,17 @@ contract FundMe {
         priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
+    event Log(uint256 gas);
+
+    // Fallback function must be declared as external.
+    fallback() external payable {
+        emit Log(gasleft());
+    }
+
+    receive() external payable {
+        emit Log(gasleft());
+    }
+
     //  * @param parameters?
     //  * @return What does it retuen?
     /**
